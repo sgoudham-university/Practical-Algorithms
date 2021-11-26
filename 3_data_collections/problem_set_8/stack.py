@@ -1,11 +1,15 @@
 class Stack:
     def __init__(self, size=0):
+        self.__size = size
         self.arr = [0] * size
         self.top = -1
 
     def push(self, val):
-        self.top += 1
-        self.arr[self.top] = val
+        if self.top >= self.__size:
+            print("StackOverflow Error :P")
+        else:
+            self.top += 1
+            self.arr[self.top] = val
 
     def pop(self):
         if self.stack_empty():
