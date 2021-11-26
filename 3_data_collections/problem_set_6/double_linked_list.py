@@ -38,6 +38,8 @@ class DoubleLinkedList:
             next_node.set_prev(prev_node)
         if node == self.tail:
             self.tail = node.get_prev()
+        if node == self.head:
+            self.head = node.get_next()
 
     def insert_head(self, key):
         """O(1)"""
@@ -54,8 +56,11 @@ class DoubleLinkedList:
         """O(1)"""
 
         if self.head is not None:
-            new_head_node = self.head.get_next()
-            self.head = new_head_node
+            if self.tail == self.head:
+                self.tail = self.head.get_prev()
+            node = self.head
+            self.head = node.get_next()
+            self.head.set_prev(node.get_prev())
 
     def insert_tail(self, key):
         """O(1)"""
@@ -95,3 +100,10 @@ class DoubleLinkedList:
         all_keys += "]"
 
         print(all_keys)
+
+
+bruh = DoubleLinkedList()
+bruh.insert_head(5)
+bruh.insert_head(10)
+bruh.delete_head()
+print("done")
